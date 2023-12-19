@@ -31,6 +31,7 @@ public class GAMEUNLOCKER implements IXposedHookLoadPackage {
     private static final String[] PACKAGE_Y700 = {"com.vng.codmvn","com.activision.callofduty.shooter","com.garena.game.codm","com.tencent.tmgp.kr.codm"};
     private static final String[] PACKAGE_V2254A = {"com.tencent.tmgp.sgame","com.levelinfinite.sgameGlobal"};
     private static final String[] PACKAGE_NX729J = {"com.YoStar.AetherGazer"};
+    private static final String[] PACKAGE_VISION = {"com.playgroundxyz.vision_project"};
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
@@ -43,6 +44,12 @@ public class GAMEUNLOCKER implements IXposedHookLoadPackage {
 
         }
 
+        if (Arrays.asList(PACKAGE_VISION).contains(packageName)) {
+            GP7P();
+            XposedBridge.log("Spoofed " + packageNane + " as Google Pixel 7");
+
+        }
+        
         if (Arrays.asList(PACKAGE_ROG3).contains(packageName)) {
             ROG3();
             XposedBridge.log("Spoofed " + packageName + " as Asus ROG 3");
@@ -141,6 +148,12 @@ public class GAMEUNLOCKER implements IXposedHookLoadPackage {
         setBuildField("MODEL", "LE2123");
     }
 
+    private static void GP7P() {
+        setBuildField("BRAND", "Google");
+        setBuildField("MANUFACTURER", "Google");
+        setBuildField("MODEL", "GE2AE");
+        setBuildField("DEVICE", "Pixel 7 Pro");
+        
     private static void M11TP() {
         setBuildField("MANUFACTURER", "Xiaomi");
         setBuildField("MODEL", "21081111RG");
